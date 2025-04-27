@@ -1,20 +1,20 @@
-import React, { useReducer, useState, useMemo } from 'react';
-import { CSVLink } from 'react-csv';
-import TransactionForm from './components/TransactionForm';
-import TransactionList from './components/TransactionList';
-import TransactionFilters from './components/TransactionFilters';
-import Charts from './components/Charts';
+import React, { useReducer, useState, useMemo } from "react";
+import { CSVLink } from "react-csv";
+import TransactionForm from "./components/TransactionForm";
+import TransactionFilters from "./components/TransactionFilters";
+import TransactionList from "./components/TransactionList";
+import Charts from "./components/Charts";
 
 const initialState = [];
 
 function transactionReducer(state, action) {
   switch (action.type) {
-    case 'ADD':
+    case "ADD":
       return [...state, action.payload];
-    case 'EDIT':
-      return state.map(txn => txn.id === action.payload.id ? action.payload : txn);
-    case 'DELETE':
-      return state.filter(txn => txn.id !== action.payload);
+    case "EDIT":
+      return state.map((txn) => (txn.id === action.payload.id ? action.payload : txn));
+    case "DELETE":
+      return state.filter((txn) => txn.id !== action.payload);
     default:
       return state;
   }
@@ -22,10 +22,10 @@ function transactionReducer(state, action) {
 
 export default function App() {
   const [transactions, dispatch] = useReducer(transactionReducer, initialState);
-  const [filter, setFilter] = useState({ type: '', category: '', minAmount: '', maxAmount: '', dateFrom: '', dateTo: '' });
+  const [filter, setFilter] = useState({ type: "", category: "", minAmount: "", maxAmount: "", dateFrom: "", dateTo: "" });
 
   const filteredTransactions = useMemo(() => {
-    return transactions.filter(txn => {
+    return transactions.filter((txn) => {
       const matchType = filter.type ? txn.type === filter.type : true;
       const matchCategory = filter.category ? txn.category === filter.category : true;
       const matchAmount = (!filter.minAmount || txn.amount >= +filter.minAmount) && (!filter.maxAmount || txn.amount <= +filter.maxAmount);
@@ -35,26 +35,34 @@ export default function App() {
   }, [transactions, filter]);
 
   const handleAdd = (form) => {
-    dispatch({ type: 'ADD', payload: { ...form, id: Date.now(), amount: +form.amount } });
+    dispatch({ type: "ADD", payload: { ...form, id: Date.now(), amount: +form.amount } });
   };
 
   const handleDelete = (id) => {
-    dispatch({ type: 'DELETE', payload: id });
+    dispatch({ type: "DELETE", payload: id });
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Transaction Manager</h1>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
+      <div className="w-full max-w-4xl space-y-8">
+        <h1 className="text-4xl font-extrabold text-center text-blue-700 mb-6">Budget Tracker</h1>
 
-      <TransactionForm onAdd={handleAdd} />
-      <TransactionFilters filter={filter} setFilter={setFilter} />
-      <TransactionList transactions={filteredTransactions} onDelete={handleDelete} />
-      <Charts transactions={filteredTransactions} />
+        {/* Form and Filters side by side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <TransactionForm onAdd={handleAdd} />
+          <TransactionFilters filter={filter} setFilter={setFilter} />
+        </div>
 
-      <div className="mt-6">
-        <CSVLink data={filteredTransactions} filename="transactions.csv">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded">Export to CSV</button>
-        </CSVLink>
+        <TransactionList transactions={filteredTransactions} onDelete={handleDelete} />
+        <Charts transactions={filteredTransactions} />
+
+        <div className="flex justify-center">
+          <CSVLink data={filteredTransactions} filename="transactions.csv">
+            <button className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow">
+              Export to CSV
+            </button>
+          </CSVLink>
+        </div>
       </div>
     </div>
   );

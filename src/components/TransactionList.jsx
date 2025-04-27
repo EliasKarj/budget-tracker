@@ -1,14 +1,18 @@
-import React from 'react';
+import React from "react";
 
 export default function TransactionList({ transactions, onDelete }) {
   return (
-    <div className="mb-6">
-      <h2 className="text-xl font-semibold mb-2">Transactions</h2>
-      <ul className="space-y-2">
-        {transactions.map(txn => (
-          <li key={txn.id} className="border p-2 rounded flex justify-between">
-            <span>{txn.date} | {txn.type} | {txn.category} | {txn.description} | ${txn.amount}</span>
-            <button onClick={() => onDelete(txn.id)} className="text-red-500">Delete</button>
+    <div className="bg-white p-6 rounded-lg shadow mb-10">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-700">Transactions</h2>
+      <ul className="divide-y divide-gray-200">
+        {transactions.map((txn) => (
+          <li key={txn.id} className="flex justify-between items-center py-4">
+            <div className="text-gray-600">
+              {txn.date} | {txn.type} | {txn.category} | {txn.description} | ${txn.amount}
+            </div>
+            <button onClick={() => onDelete(txn.id)} className="text-red-500 hover:text-red-700 font-semibold">
+              Delete
+            </button>
           </li>
         ))}
       </ul>
