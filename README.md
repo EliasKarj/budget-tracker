@@ -1,4 +1,5 @@
 💰 Budget Tracker App
+
 Welcome to the Budget Tracker app!
 This web application helps you easily manage your income and expenses, filter transactions, visualize your data with charts, and export your transactions as a CSV file.
 
