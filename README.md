@@ -36,7 +36,7 @@ localStorage – For client-side data persistence.
 📦 Installation and Running Locally
 Clone the repository:
 
-git clone https://github.com/your-username/budget-tracker.git
+git clone https://github.com/EliasKarj/budget-tracker.git
 cd budget-tracker
 
 Install dependencies:
