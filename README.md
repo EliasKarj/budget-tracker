@@ -1,12 +1,59 @@
-# React + Vite
+💰 Budget Tracker App
+Welcome to the Budget Tracker app!
+This web application helps you easily manage your income and expenses, filter transactions, visualize your data with charts, and export your transactions as a CSV file.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Features
+Add new income or expense transactions quickly.
 
-Currently, two official plugins are available:
+Filter transactions by type, category, amount range, and date range.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+View your total income, expenses, and balance at a glance.
 
-## Expanding the ESLint configuration
+Visualize your data with interactive charts:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Expenses by category (PieChart)
+
+Income vs. Expenses per month (BarChart)
+
+Savings trend over time (LineChart)
+
+Export filtered transactions as a CSV file.
+
+All transactions are saved automatically to your browser’s localStorage.
+
+🛠️ Built With
+React – For building the application.
+
+Recharts – For creating interactive charts.
+
+Tailwind CSS – For styling and responsive design.
+
+react-csv – For CSV export functionality.
+
+localStorage – For client-side data persistence.
+
+📦 Installation and Running Locally
+Clone the repository:
+
+git clone https://github.com/your-username/budget-tracker.git
+cd budget-tracker
+
+Install dependencies:
+
+npm install
+Start the development server:
+
+Edit
+npm start
+The app will run at http://localhost:3000.
+
+🧠 Key Learnings
+- Gained deeper understanding of managing complex state with React’s useReducer and optimizing performance using useMemo.
+
+- Practiced efficient data handling and UI rendering.
+
+- Used Git version control to manage workflow and collaboration smoothly.
+
+- Designed a clean and responsive UI using Tailwind CSS utility classes.
+
+🔥 Track your budget smarter, not harder!
